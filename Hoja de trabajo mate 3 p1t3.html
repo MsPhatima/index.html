@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Trabajo - Matemáticas III</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 20px auto; padding: 20px; background-color: #f4f4f9; }
+        .header { text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; margin-bottom: 20px; }
+        .section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 10px; font-size: 1.2em; }
+        .question { margin-bottom: 20px; padding: 10px; border-bottom: 1px dashed #ccc; }
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; background: #fff; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        textarea { width: 100%; height: 80px; margin-top: 10px; resize: vertical; border: 1px solid #ccc; border-radius: 4px; }
+        input[type="text"], input[type="number"] { width: 90%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .radio-group { display: flex; align-items: center; gap: 10px; }
+        .btn-submit { display: block; width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; transition: background 0.3s; }
+        .btn-submit:hover { background: #219150; }
+        .datos-header { display: flex; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; }
+        .datos-header div { margin: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>INSTITUTO LUIS PASTEUR UNIDAD ANDALUCÍA</h1>
+        <p>SECUNDARIA | CICLO ESCOLAR 2025-2026</p>
+        <strong>HOJA DE TRABAJO - MATEMÁTICAS III</strong>
+    </div>
+
+    <form id="mathWorksheet">
+        <div class="section datos-header">
+            <div>Nombre: <input type="text" name="nombre" style="width: 250px;"></div>
+            <div>Fecha: <input type="date" name="fecha"></div>
+            <div>Grado: 3° Grupo: <input type="text" name="grupo" style="width: 50px;"></div>
+            <div>N° Lista: <input type="number" name="lista" style="width: 50px;"></div>
+        </div>
+
+        <div class="section">
+            <h2>I. VOLUMEN DE SÓLIDOS GEOMÉTRICOS</h2>
+            <p><em>Instrucciones: Lee la situación y elige la respuesta correcta. Muestra el procedimiento.</em></p>
+            <p>Situación: La escuela quiere construir dos bebederos. Modelo 1 (Cilíndrico: d=0.8m, h=1.5m). Modelo 2 (Prisma: 0.9m x 0.9m x 1.2m). Usa &pi; = 3.14.</p>
+            
+            <div class="question">
+                <p>1. ¿Cuál es el volumen del tanque cilíndrico (Modelo 1)?</p>
+                <div class="options-grid">
+                    <label class="radio-group"><input type="radio" name="p1" value="A"> A. 0.75 m³</label>
+                    <label class="radio-group"><input type="radio" name="p1" value="B"> B. 0.94 m³</label>
+                    <label class="radio-group"><input type="radio" name="p1" value="C"> C. 0.60 m³</label>
+                    <label class="radio-group"><input type="radio" name="p1" value="D"> D. 1.13 m³</label>
+                </div>
+                <table>
+                    <tr><th>DATOS</th><th>FÓRMULA</th><th>SUSTITUCIÓN Y RESULTADO</th></tr>
+                    <tr>
+                        <td><textarea name="p1_datos"></textarea></td>
+                        <td><textarea name="p1_formula"></textarea></td>
+                        <td><textarea name="p1_sustitucion"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="question">
+                <p>2. ¿Cuál es el volumen de la caja rectangular (Modelo 2)?</p>
+                <div class="options-grid">
+                    <label class="radio-group"><input type="radio" name="p2" value="A"> A. 0.81 m³</label>
+                    <label class="radio-group"><input type="radio" name="p2" value="B"> B. 0.97 m³</label>
+                    <label class="radio-group"><input type="radio" name="p2" value="C"> C. 1.00 m³</label>
+                    <label class="radio-group"><input type="radio" name="p2" value="D"> D. 1.21 m³</label>
+                </div>
+                <table>
+                    <tr><th>DATOS</th><th>FÓRMULA</th><th>SUSTITUCIÓN Y RESULTADO</th></tr>
+                    <tr>
+                        <td><textarea name="p2_datos"></textarea></td>
+                        <td><textarea name="p2_formula"></textarea></td>
+                        <td><textarea name="p2_sustitucion"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>IV. INTERPRETACIÓN DE TABLAS Y GRÁFICAS</h2>
+            <p>Puntos anotados por el equipo de basquetbol:</p>
+            <table>
+                <tr><th>Partido</th><td>1°</td><td>2°</td><td>3°</td><td>4°</td><td>5°</td></tr>
+                <tr><th>Puntos</th><td>38</td><td>52</td><td>47</td><td>65</td><td>44</td></tr>
+            </table>
+
+            <div class="question">
+                <p>9. ¿En qué partido anotaron más puntos?</p>
+                <select name="p9">
+                    <option value="">Selecciona...</option>
+                    <option value="A">Primer partido</option>
+                    <option value="B">Cuarto partido</option>
+                    <option value="C">Tercer partido</option>
+                    <option value="D">Quinto partido</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <p>12. ¿Cuál es el total de puntos anotados en los 5 partidos?</p>
+                <div class="options-grid">
+                    <label class="radio-group"><input type="radio" name="p12" value="240"> 240</label>
+                    <label class="radio-group"><input type="radio" name="p12" value="246"> 246</label>
+                    <label class="radio-group"><input type="radio" name="p12" value="256"> 256</label>
+                    <label class="radio-group"><input type="radio" name="p12" value="236"> 236</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>VI. MEDIDAS DE TENDENCIA CENTRAL Y DISPERSIÓN</h2>
+            <p>15. Conjunto B: (5, 9, 7, 8, 6, 10, 8, 7)</p>
+            <table>
+                <tr><th>Medida</th><th>Procedimiento</th><th>Resultado</th></tr>
+                <tr><td>Media</td><td><input type="text" name="media_proc"></td><td><input type="text" name="media_res"></td></tr>
+                <tr><td>Mediana</td><td><input type="text" name="mediana_proc"></td><td><input type="text" name="mediana_res"></td></tr>
+                <tr><td>Moda</td><td><input type="text" name="moda_proc"></td><td><input type="text" name="moda_res"></td></tr>
+            </table>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="alert('Formulario completado. ¡Buen trabajo!')">Finalizar Hoja de Trabajo</button>
+    </form>
+
+</body>
+</html>
