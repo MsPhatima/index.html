@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciencias II – Movimiento, Velocidad, Aceleración y Vectores</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #1a1a1a; font-size: 15px; line-height: 1.6; }
+  .page { max-width: 780px; margin: 0 auto; padding: 24px 16px 48px; }
+
+  /* Header */
+  .school-header { background: #1a3a5c; color: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .school-header h1 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .school-header p { font-size: 13px; opacity: 0.8; margin-bottom: 6px; }
+  .school-header .subject-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 14px; font-size: 12px; }
+
+  /* Meta fields */
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .meta-field label { display: block; font-size: 12px; color: #555; margin-bottom: 4px; font-weight: 500; }
+  .meta-field input { width: 100%; padding: 8px 12px; border: 1.5px solid #d0d5de; border-radius: 8px; font-size: 14px; color: #1a1a1a; background: #fff; }
+  .meta-field input:focus { outline: none; border-color: #3a7bd5; }
+
+  /* Sections */
+  .section { background: #fff; border: 1px solid #e0e4ed; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+  .section-header { background: #f0f4fb; padding: 14px 20px; border-bottom: 1px solid #e0e4ed; display: flex; align-items: center; gap: 12px; }
+  .section-num { width: 30px; height: 30px; background: #3a7bd5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .section-header h2 { font-size: 15px; font-weight: 600; color: #1a3a5c; }
+  .section-body { padding: 20px; }
+
+  /* Question */
+  .question { margin-bottom: 22px; }
+  .question:last-child { margin-bottom: 0; }
+  .q-label { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+  .q-desc { font-size: 13px; color: #555; margin-bottom: 10px; line-height: 1.5; }
+  .divider { border: none; border-top: 1px solid #eef0f5; margin: 18px 0; }
+
+  /* Data table */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 14px; border-radius: 8px; overflow: hidden; }
+  .data-table th { background: #e8eef8; padding: 9px 14px; text-align: center; border: 1px solid #d0d8ea; font-weight: 600; color: #1a3a5c; }
+  .data-table td { padding: 8px 14px; text-align: center; border: 1px solid #e0e4ed; font-size: 13px; background: #fff; }
+  .data-table tr:nth-child(even) td { background: #fafbfd; }
+
+  /* Radio options */
+  .options-grid { display: flex; flex-direction: column; gap: 8px; }
+  .option-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border: 1.5px solid #e0e4ed; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+  .option-item:hover { border-color: #3a7bd5; background: #f0f5ff; }
+  .option-item input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: #3a7bd5; width: 16px; height: 16px; }
+  .option-item span { font-size: 13px; color: #1a1a1a; line-height: 1.5; }
+
+  /* Textarea */
+  textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #d0d5de; border-radius: 8px; font-size: 13px; color: #1a1a1a; background: #fff; resize: vertical; min-height: 85px; font-family: inherit; line-height: 1.6; }
+  textarea:focus { outline: none; border-color: #3a7bd5; }
+  textarea::placeholder { color: #aaa; }
+
+  /* Calc box */
+  .calc-box { background: #f7f9fc; border: 1px solid #e0e4ed; border-radius: 8px; padding: 14px; margin-top: 10px; }
+  .calc-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .calc-cell label { display: block; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; font-weight: 600; }
+  .calc-cell input { width: 100%; padding: 8px 10px; border: 1.5px solid #d0d5de; border-radius: 7px; font-size: 13px; color: #1a1a1a; background: #fff; }
+  .calc-cell input:focus { outline: none; border-color: #3a7bd5; }
+
+  /* Classify rows */
+  .classify-row { background: #f7f9fc; border: 1px solid #e0e4ed; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
+  .classify-row-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+  .classify-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .classify-inner label { font-size: 11px; color: #888; display: block; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .classify-inner select, .classify-inner input { width: 100%; padding: 7px 10px; border: 1.5px solid #d0d5de; border-radius: 7px; font-size: 13px; background: #fff; color: #1a1a1a; }
+  .classify-inner select:focus, .classify-inner input:focus { outline: none; border-color: #3a7bd5; }
+
+  /* Vector table */
+  .vector-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .vector-table th { padding: 9px 10px; text-align: left; border: 1px solid #e0e4ed; font-size: 11px; font-weight: 600; color: #1a3a5c; background: #e8eef8; }
+  .vector-table td { padding: 5px 8px; border: 1px solid #e0e4ed; background: #fff; }
+  .vector-table td:first-child { font-size: 12px; color: #555; padding: 8px 10px; background: #fafbfd; }
+  .vector-table td input { width: 100%; font-size: 12px; padding: 6px 8px; border: 1px solid #d0d5de; border-radius: 6px; background: #fff; color: #1a1a1a; }
+  .vector-table td input:focus { outline: none; border-color: #3a7bd5; }
+
+  /* Grid canvas */
+  #gridCanvas { display: block; width: 100%; border: 1.5px solid #d0d5de; border-radius: 8px; background: #fff; cursor: crosshair; }
+
+  /* Result inputs */
+  .result-inline { display: flex; align-items: center; gap: 10px; background: #f7f9fc; border: 1px solid #e0e4ed; border-radius: 8px; padding: 12px 14px; }
+  .result-inline span { font-size: 13px; color: #555; white-space: nowrap; }
+  .result-inline input { flex: 1; max-width: 140px; padding: 7px 10px; border: 1.5px solid #d0d5de; border-radius: 7px; font-size: 13px; background: #fff; color: #1a1a1a; }
+  .result-inline input:focus { outline: none; border-color: #3a7bd5; }
+
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .result-card { background: #f7f9fc; border: 1px solid #e0e4ed; border-radius: 8px; padding: 12px 14px; }
+  .result-card label { display: block; font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .result-card input { width: 100%; padding: 7px 10px; border: 1.5px solid #d0d5de; border-radius: 7px; font-size: 13px; background: #fff; color: #1a1a1a; }
+  .result-card input:focus { outline: none; border-color: #3a7bd5; }
+
+  /* Bonus */
+  .bonus-section { background: #fff; border: 1.5px solid #f0a500; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+  .bonus-header { background: #fff8e6; padding: 12px 20px; border-bottom: 1px solid #f0d080; display: flex; align-items: center; gap: 10px; }
+  .bonus-header span { font-size: 14px; font-weight: 600; color: #7a4f00; }
+  .bonus-star { font-size: 18px; }
+  .bonus-body { padding: 20px; }
+
+  /* Submit */
+  .submit-btn { width: 100%; padding: 14px; background: #1a3a5c; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; letter-spacing: 0.02em; transition: background 0.2s; }
+  .submit-btn:hover { background: #3a7bd5; }
+
+  /* Score bar */
+  .score-bar { display: none; background: #e8f5e9; border: 1.5px solid #66bb6a; border-radius: 10px; padding: 14px 20px; margin-top: 14px; text-align: center; }
+  .score-bar p { font-size: 15px; color: #2e7d32; font-weight: 500; }
+
+  /* Canvas tools */
+  .canvas-tools { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .canvas-tools button { padding: 6px 14px; font-size: 12px; border: 1.5px solid #d0d5de; border-radius: 7px; background: #fff; color: #1a1a1a; cursor: pointer; font-weight: 500; }
+  .canvas-tools button:hover { background: #f0f4fb; border-color: #3a7bd5; }
+  .canvas-tools button.active { background: #3a7bd5; color: white; border-color: #3a7bd5; }
+
+  @media (max-width: 520px) {
+    .meta-grid { grid-template-columns: 1fr; }
+    .calc-row { grid-template-columns: 1fr; }
+    .classify-inner { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: white; }
+    .submit-btn, .score-bar, .canvas-tools { display: none !important; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Encabezado -->
+  <div class="school-header">
+    <h1>Instituto Luis Pasteur Unidad Andalucía</h1>
+    <p>Hoja de Trabajo · Ciencias II · 2° de Secundaria · Ciclo Escolar 2025–2026</p>
+    <div class="subject-badge">Movimiento, Velocidad, Aceleración y Vectores</div>
+  </div>
+
+  <!-- Datos del alumno -->
+  <div class="meta-grid">
+    <div class="meta-field" style="grid-column: span 2"><label>Nombre completo</label><input type="text" id="nombre" placeholder="Escribe tu nombre completo"></div>
+    <div class="meta-field"><label>N° de lista</label><input type="text" placeholder="Ej. 15"></div>
+    <div class="meta-field"><label>Fecha</label><input type="date"></div>
+    <div class="meta-field"><label>Grado y grupo</label><input type="text" placeholder="Ej. 2°A"></div>
+    <div class="meta-field"><label>Calificación</label><input type="text" placeholder="Solo para el maestro"></div>
+  </div>
+
+  <!-- ── SECCIÓN I ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">I</div>
+      <h2>Movimiento uniforme</h2>
+    </div>
+    <div class="section-body">
+      <p class="q-desc">Un patinador recorre el parque en línea recta. Observa la tabla y responde las preguntas.</p>
+      <table class="data-table">
+        <tr><th>Tiempo (s)</th><th>0</th><th>4</th><th>8</th><th>12</th><th>16</th></tr>
+        <tr><td><strong>Distancia (m)</strong></td><td>0</td><td>12</td><td>24</td><td>36</td><td>48</td></tr>
+      </table>
+
+      <div class="question">
+        <p class="q-label">1. ¿Qué tipo de movimiento realiza el patinador? Encierra la opción correcta y justifica tu elección.</p>
+        <div class="options-grid">
+          <label class="option-item"><input type="radio" name="q1" value="A"><span><strong>A)</strong> Movimiento acelerado, porque la distancia aumenta cada vez más.</span></label>
+          <label class="option-item"><input type="radio" name="q1" value="B"><span><strong>B)</strong> Movimiento uniforme, porque recorre la misma distancia en cada intervalo.</span></label>
+          <label class="option-item"><input type="radio" name="q1" value="C"><span><strong>C)</strong> Movimiento desacelerado, porque la velocidad disminuye.</span></label>
+          <label class="option-item"><input type="radio" name="q1" value="D"><span><strong>D)</strong> Movimiento irregular, porque los intervalos de tiempo cambian.</span></label>
+        </div>
+        <div style="margin-top:12px">
+          <p class="q-desc">Justificación:</p>
+          <textarea placeholder="Escribe tu justificación aquí..."></textarea>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">2. Calcula la velocidad del patinador. Muestra tu procedimiento.</p>
+        <div class="calc-box">
+          <div class="calc-row">
+            <div class="calc-cell"><label>Datos</label><input type="text" placeholder="d = __ m, t = __ s"></div>
+            <div class="calc-cell"><label>Fórmula</label><input type="text" placeholder="v = d / t"></div>
+            <div class="calc-cell"><label>Sustitución y resultado</label><input type="text" placeholder="v = ___ m/s"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">3. Si el patinador mantiene esa velocidad, ¿qué distancia habrá recorrido al segundo 30?</p>
+        <div class="calc-box">
+          <div class="calc-row">
+            <div class="calc-cell"><label>Datos</label><input type="text" placeholder="v = __ m/s, t = 30 s"></div>
+            <div class="calc-cell"><label>Fórmula</label><input type="text" placeholder="d = v × t"></div>
+            <div class="calc-cell"><label>Sustitución y resultado</label><input type="text" placeholder="d = ___ m"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">4. Tu amigo dice: "Mientras más tiempo pasa, el patinador va más rápido." ¿Estás de acuerdo?</p>
+        <p class="q-desc">Usa los datos de la tabla para defender o refutar su afirmación.</p>
+        <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN II ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">II</div>
+      <h2>Velocidad y aceleración</h2>
+    </div>
+    <div class="section-body">
+      <p class="q-desc">Tres globos fueron lanzados por una rampa. Se registró su velocidad en distintos momentos.</p>
+      <table class="data-table">
+        <tr><th>Tiempo (s)</th><th>Vel. Globo X (m/s)</th><th>Vel. Globo Y (m/s)</th><th>Vel. Globo Z (m/s)</th></tr>
+        <tr><td>0</td><td>2</td><td>10</td><td>0</td></tr>
+        <tr><td>3</td><td>5</td><td>10</td><td>6</td></tr>
+        <tr><td>6</td><td>8</td><td>10</td><td>12</td></tr>
+        <tr><td>9</td><td>11</td><td>10</td><td>18</td></tr>
+      </table>
+
+      <div class="question">
+        <p class="q-label">5. ¿Cuál globo tiene movimiento uniforme? Identifícalo y explica qué dato te lo indica.</p>
+        <textarea placeholder="Escribe tu respuesta..."></textarea>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">6. ¿Cuál globo tiene movimiento uniformemente acelerado? Explica la característica de los datos que te permite identificarlo.</p>
+        <textarea placeholder="Escribe tu respuesta..."></textarea>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">7. Calcula la aceleración del Globo Z entre t = 0 s y t = 9 s.</p>
+        <p class="q-desc">Recuerda: a = (Vf – V₀) / t</p>
+        <div class="calc-box">
+          <div class="calc-row">
+            <div class="calc-cell"><label>Datos</label><input type="text" placeholder="Vf=18, V₀=0, t=9"></div>
+            <div class="calc-cell"><label>Fórmula</label><input type="text" placeholder="a = (Vf – V₀) / t"></div>
+            <div class="calc-cell"><label>Sustitución y resultado</label><input type="text" placeholder="a = ___ m/s²"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN III ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">III</div>
+      <h2>Vectores y escalares</h2>
+    </div>
+    <div class="section-body">
+      <p class="q-desc">Las magnitudes <strong>escalares</strong> solo necesitan número y unidad (ej. temperatura, masa). Las magnitudes <strong>vectoriales</strong> necesitan número, unidad y dirección (ej. fuerza, desplazamiento).</p>
+
+      <div class="question">
+        <p class="q-label">8. Cuando pides una pizza, das tu dirección: "Calle Roble 45, al norte del parque". ¿Por qué el repartidor necesita la dirección y no solo la distancia?</p>
+        <p class="q-desc">Usa las palabras <em>vector</em> y <em>escalar</em> en tu respuesta.</p>
+        <textarea placeholder="Escribe tu respuesta usando ambos términos..."></textarea>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">9. Clasifica las siguientes magnitudes como VECTOR o ESCALAR y escribe un ejemplo cotidiano.</p>
+        <div id="classify-container"></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">10. Escribe la notación vectorial correcta para cada situación e identifica sus partes.</p>
+        <table class="vector-table">
+          <thead>
+            <tr><th>Situación</th><th>Vector</th><th>Origen</th><th>Magnitud</th><th>Dirección y sentido</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>a) Una pelota rueda a 5 m/s hacia el sur.</td>
+              <td><input type="text" placeholder="→v"></td>
+              <td><input type="text" placeholder="punto O"></td>
+              <td><input type="text" placeholder="5 m/s"></td>
+              <td><input type="text" placeholder="Sur"></td>
+            </tr>
+            <tr>
+              <td>b) Un empujón de 20 N hacia el este sobre una caja.</td>
+              <td><input type="text" placeholder="→F"></td>
+              <td><input type="text" placeholder="punto O"></td>
+              <td><input type="text" placeholder="20 N"></td>
+              <td><input type="text" placeholder="Este"></td>
+            </tr>
+            <tr>
+              <td>c) Una persona camina 150 m al noroeste.</td>
+              <td><input type="text" placeholder="→d"></td>
+              <td><input type="text" placeholder="punto O"></td>
+              <td><input type="text" placeholder="150 m"></td>
+              <td><input type="text" placeholder="Noroeste"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN IV ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">IV</div>
+      <h2>Distancia y desplazamiento resultante</h2>
+    </div>
+    <div class="section-body">
+      <p class="q-desc">Un perro sale de su casa y corre <strong>8 km al Norte</strong>, luego gira y corre <strong>6 km al Este</strong> hasta llegar al parque.</p>
+
+      <div class="question">
+        <p class="q-label">A. ¿Cuál es la distancia total recorrida por el perro?</p>
+        <div class="result-inline">
+          <span>Distancia total =</span>
+          <input type="text" placeholder="____ km">
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">B. ¿Cuál es el desplazamiento resultante?</p>
+        <p class="q-desc">Usa el teorema de Pitágoras: d = √(x² + y²) y θ = tan⁻¹(y/x)</p>
+        <div class="calc-box">
+          <div class="calc-row">
+            <div class="calc-cell"><label>Datos</label><input type="text" placeholder="x = 6 km, y = 8 km"></div>
+            <div class="calc-cell"><label>Fórmula</label><input type="text" placeholder="d = √(x² + y²)"></div>
+            <div class="calc-cell"><label>Sustitución y resultado</label><input type="text" placeholder="d=__ km, θ=__°"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="question">
+        <p class="q-label">C. ¿Por qué el desplazamiento resultante es diferente a la distancia total recorrida?</p>
+        <textarea placeholder="Escribe tu explicación..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN V ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">V</div>
+      <h2>Trayectoria y vector resultante</h2>
+    </div>
+    <div class="section-body">
+      <p class="q-desc">Una hormiga camina <strong>20 cm al Norte</strong>, luego <strong>15 cm al Este</strong> y finalmente <strong>5 cm al Sur</strong>. Dibuja el recorrido en la cuadrícula (cada cuadro = 5 cm), indica el vector resultante con una flecha y calcula la distancia total y el desplazamiento.</p>
+
+      <div class="canvas-tools">
+        <button onclick="setTool('draw')" id="btn-draw" class="active">✏️ Dibujar</button>
+        <button onclick="setTool('erase')" id="btn-erase">🗑 Borrar segmento</button>
+        <button onclick="clearCanvas()">🔄 Limpiar todo</button>
+        <button onclick="drawHormiga()">🐜 Trazar recorrido automático</button>
+      </div>
+      <canvas id="gridCanvas" height="280"></canvas>
+      <p style="font-size:12px;color:#888;margin-top:6px;">Haz clic y arrastra para dibujar. El vector resultante se muestra en azul al soltar.</p>
+
+      <div class="results-grid">
+        <div class="result-card">
+          <label>Distancia total recorrida</label>
+          <input type="text" placeholder="___ cm">
+        </div>
+        <div class="result-card">
+          <label>Desplazamiento resultante</label>
+          <input type="text" placeholder="___ cm, dirección: ___">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BONUS ── -->
+  <div class="bonus-section">
+    <div class="bonus-header">
+      <span class="bonus-star">⭐</span>
+      <span>Bonus (5 puntos) — Diseña un experimento sencillo para medir la velocidad de un objeto en tu casa o salón</span>
+    </div>
+    <div class="bonus-body">
+      <div class="question">
+        <p class="q-label">Materiales:</p>
+        <textarea placeholder="Enlista los materiales necesarios..." style="min-height:70px"></textarea>
+      </div>
+      <hr class="divider">
+      <div class="question">
+        <p class="q-label">Procedimiento (mínimo 3 pasos):</p>
+        <textarea placeholder="Paso 1: ...&#10;Paso 2: ...&#10;Paso 3: ..." style="min-height:110px"></textarea>
+      </div>
+      <hr class="divider">
+      <div class="question">
+        <p class="q-label">Variable que cambiarías:</p>
+        <textarea placeholder="¿Qué variable modificarías y por qué?" style="min-height:70px"></textarea>
+      </div>
+      <hr class="divider">
+      <div class="question">
+        <p class="q-label">Resultado esperado:</p>
+        <textarea placeholder="¿Qué esperas observar o medir?" style="min-height:70px"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="enviar()">✅ &nbsp;Entregar hoja de trabajo</button>
+  <div class="score-bar" id="scoreBar"><p id="scoreMsg"></p></div>
+
+</div>
+
+<script>
+  // ── Clasificación magnitudes ──
+  const magnitudes = ["Velocidad","Temperatura","Fuerza","Masa","Desplazamiento","Distancia recorrida","Aceleración","Volumen"];
+  const cont = document.getElementById('classify-container');
+  magnitudes.forEach(m => {
+    const row = document.createElement('div');
+    row.className = 'classify-row';
+    row.innerHTML = `<div class="classify-row-title">${m}</div>
+    <div class="classify-inner">
+      <div>
+        <label>Clasificación</label>
+        <select><option value="">Selecciona...</option><option>Vector</option><option>Escalar</option></select>
+      </div>
+      <div>
+        <label>Ejemplo cotidiano</label>
+        <input type="text" placeholder="Escribe un ejemplo...">
+      </div>
+    </div>`;
+    cont.appendChild(row);
+  });
+
+  // ── Canvas cuadrícula ──
+  const canvas = document.getElementById('gridCanvas');
+  const ctx = canvas.getContext('2d');
+  const CELL = 20;
+  let drawing = false, pts = [], allPaths = [], curPath = [];
+  let tool = 'draw';
+
+  function setTool(t) {
+    tool = t;
+    document.querySelectorAll('.canvas-tools button').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + t).classList.add('active');
+  }
+
+  function resizeCanvas() { canvas.width = canvas.offsetWidth; redraw(); }
+
+  function drawGrid() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.strokeStyle='rgba(0,0,0,0.08)'; ctx.lineWidth=0.5;
+    for(let x=0;x<=canvas.width;x+=CELL){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke();}
+    for(let y=0;y<=canvas.height;y+=CELL){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke();}
+    const cx=Math.round(canvas.width/2/CELL)*CELL, cy=Math.round(canvas.height/2/CELL)*CELL;
+    ctx.strokeStyle='rgba(0,0,0,0.25)'; ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(cx,0);ctx.lineTo(cx,canvas.height);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(canvas.width,cy);ctx.stroke();
+    ctx.fillStyle='#555';ctx.font='11px Segoe UI,Arial,sans-serif';
+    ctx.fillText('N',cx+4,14);ctx.fillText('S',cx+4,canvas.height-4);
+    ctx.fillText('O',4,cy-4);ctx.fillText('E',canvas.width-16,cy-4);
+  }
+
+  function drawArrow(x1,y1,x2,y2,color,width,label){
+    ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    const a=Math.atan2(y2-y1,x2-x1),hs=10;
+    ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(x2,y2);
+    ctx.lineTo(x2-hs*Math.cos(a-0.35),y2-hs*Math.sin(a-0.35));
+    ctx.lineTo(x2-hs*Math.cos(a+0.35),y2-hs*Math.sin(a+0.35));
+    ctx.closePath();ctx.fill();
+    if(label){ctx.fillStyle=color;ctx.font='bold 11px Segoe UI,Arial,sans-serif';ctx.fillText(label,(x1+x2)/2+4,(y1+y2)/2-6);}
+  }
+
+  function redraw(){
+    drawGrid();
+    allPaths.forEach(p=>{
+      if(p.length<2)return;
+      ctx.strokeStyle='#c0392b';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(p[0].x,p[0].y);
+      for(let i=1;i<p.length;i++)ctx.lineTo(p[i].x,p[i].y);ctx.stroke();
+      ctx.fillStyle='#c0392b';ctx.beginPath();ctx.arc(p[0].x,p[0].y,4,0,Math.PI*2);ctx.fill();
+    });
+    if(curPath.length>1){
+      ctx.strokeStyle='#e74c3c';ctx.lineWidth=2.5;ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(curPath[0].x,curPath[0].y);
+      for(let i=1;i<curPath.length;i++)ctx.lineTo(curPath[i].x,curPath[i].y);ctx.stroke();ctx.setLineDash([]);
+    }
+    if(allPaths.length>0){
+      const first=allPaths[0][0], last=allPaths[allPaths.length-1];
+      const lp=last[last.length-1];
+      drawArrow(first.x,first.y,lp.x,lp.y,'#2980b9',2.5,'v resultante');
+    }
+  }
+
+  function getPos(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
+  function getTouchPos(e){const r=canvas.getBoundingClientRect(),t=e.touches[0];return{x:t.clientX-r.left,y:t.clientY-r.top};}
+
+  canvas.addEventListener('mousedown',e=>{if(tool!='draw')return;drawing=true;curPath=[getPos(e)];redraw();});
+  canvas.addEventListener('mousemove',e=>{if(!drawing||tool!='draw')return;curPath.push(getPos(e));redraw();});
+  canvas.addEventListener('mouseup',e=>{if(!drawing)return;drawing=false;if(curPath.length>1){allPaths.push([...curPath]);}curPath=[];redraw();});
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();if(tool!='draw')return;drawing=true;curPath=[getTouchPos(e)];redraw();},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;curPath.push(getTouchPos(e));redraw();},{passive:false});
+  canvas.addEventListener('touchend',e=>{e.preventDefault();if(!drawing)return;drawing=false;if(curPath.length>1){allPaths.push([...curPath]);}curPath=[];redraw();},{passive:false});
+
+  function clearCanvas(){allPaths=[];curPath=[];redraw();}
+
+  function drawHormiga(){
+    clearCanvas();
+    const cx=Math.round(canvas.width/2/CELL)*CELL;
+    const cy=Math.round(canvas.height/2/CELL)*CELL;
+    // 20cm N = 4 celdas arriba, 15cm E = 3 celdas der, 5cm S = 1 celda abajo
+    const pts1=[{x:cx,y:cy},{x:cx,y:cy-4*CELL}];
+    const pts2=[{x:cx,y:cy-4*CELL},{x:cx+3*CELL,y:cy-4*CELL}];
+    const pts3=[{x:cx+3*CELL,y:cy-4*CELL},{x:cx+3*CELL,y:cy-3*CELL}];
+    allPaths=[pts1,pts2,pts3];
+    redraw();
+  }
+
+  setTimeout(resizeCanvas,100);
+  window.addEventListener('resize',resizeCanvas);
+
+  // ── Enviar ──
+  function enviar(){
+    const nombre=document.getElementById('nombre').value.trim();
+    let total=0,filled=0;
+    document.querySelectorAll('input[type="text"],input[type="date"],textarea,select').forEach(el=>{
+      total++;if(el.value.trim()&&el.value!='Selecciona...')filled++;
+    });
+    const pct=Math.round((filled/total)*100);
+    const bar=document.getElementById('scoreBar');
+    const msg=document.getElementById('scoreMsg');
+    bar.style.display='block';
+    msg.textContent=nombre
+      ?`¡Hoja entregada, ${nombre}! Completaste el ${pct}% del formulario. ¡Excelente trabajo!`
+      :`Hoja entregada. Completaste el ${pct}% de los campos.`;
+    bar.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+</script>
+</body>
+</html>
