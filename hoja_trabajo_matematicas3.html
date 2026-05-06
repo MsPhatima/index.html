@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoja de Trabajo – Matemáticas III | Instituto Luis Pasteur</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2240;
+    --gold: #c9991a;
+    --gold-light: #f0c84a;
+    --cream: #fdf8ef;
+    --white: #ffffff;
+    --gray-100: #f4f4f4;
+    --gray-200: #e5e5e5;
+    --gray-400: #999;
+    --gray-700: #444;
+    --accent: #1a6b9e;
+    --accent2: #2e8a5e;
+    --radius: 6px;
+    --shadow: 0 2px 12px rgba(15,34,64,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px 10px 0 0;
+    padding: 22px 28px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(45deg, rgba(201,153,26,.06) 0px, rgba(201,153,26,.06) 1px, transparent 1px, transparent 20px);
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 16px;
+    position: relative;
+  }
+  .logo-circle {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--navy); flex-shrink: 0;
+  }
+  .header-text { flex: 1; }
+  .header-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; color: var(--gold-light);
+    letter-spacing: .5px;
+  }
+  .header-text p { font-size: 12px; opacity: .75; margin-top: 2px; }
+  .subject-badge {
+    background: var(--gold); color: var(--navy);
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px;
+    position: relative;
+  }
+
+  /* ── IDENTITY FIELDS ── */
+  .identity {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-top: 3px solid var(--gold);
+    border-radius: 0 0 10px 10px;
+    padding: 14px 28px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 10px 16px;
+    align-items: end;
+    margin-bottom: 24px;
+  }
+  .identity label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--gold); display: block; margin-bottom: 3px; }
+  .identity input[type="text"] {
+    width: 100%;
+    border: none; border-bottom: 1.5px solid var(--gray-200);
+    background: transparent;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px; color: var(--navy);
+    padding: 3px 2px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .identity input[type="text"]:focus { border-color: var(--gold); }
+  .sep { width: 1px; height: 38px; background: var(--gray-200); align-self: end; }
+
+  /* ── PRINT BUTTON ── */
+  .toolbar {
+    display: flex; justify-content: flex-end; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px; border-radius: 6px; border: none;
+    font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all .2s;
+  }
+  .btn-primary { background: var(--navy); color: var(--white); }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-secondary { background: var(--white); color: var(--navy); border: 1.5px solid var(--navy); }
+  .btn-secondary:hover { background: var(--gray-100); }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    margin-bottom: 28px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    flex: 1;
+  }
+  .pda-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: .6px;
+    background: rgba(255,255,255,.15); padding: 2px 8px; border-radius: 10px;
+    text-transform: uppercase;
+  }
+  .section-body { padding: 18px 20px; }
+  .instrucciones {
+    background: var(--gray-100);
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px; margin-bottom: 14px;
+    font-size: 12.5px; color: var(--gray-700);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── QUESTIONS ── */
+  .question { margin-bottom: 20px; }
+  .question-label {
+    font-weight: 700; font-size: 13.5px; color: var(--navy);
+    margin-bottom: 8px; display: flex; gap: 6px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: white; border-radius: 50%;
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* Radio options */
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; margin-bottom: 10px; }
+  .option {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 10px; border-radius: var(--radius);
+    border: 1.5px solid var(--gray-200);
+    cursor: pointer; transition: all .2s;
+    font-size: 13px;
+  }
+  .option:hover { border-color: var(--gold); background: #fffbf0; }
+  .option input[type="radio"] { accent-color: var(--gold); width: 15px; height: 15px; }
+  .option.selected { border-color: var(--gold); background: #fffbf0; font-weight: 600; }
+
+  /* Procedure boxes */
+  .proc-box {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .proc-header {
+    background: var(--gray-200);
+    padding: 5px 12px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .5px; color: var(--gray-700);
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .proc-body {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .proc-cell {
+    padding: 8px 12px;
+    border-right: 1px solid var(--gray-200);
+    min-height: 70px;
+  }
+  .proc-cell:last-child { border-right: none; }
+  textarea {
+    width: 100%; min-height: 64px;
+    border: none; background: transparent;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px; color: var(--navy);
+    resize: vertical; outline: none; line-height: 1.5;
+  }
+
+  /* Simple text area */
+  .answer-area {
+    border: 1px solid var(--gray-200); border-radius: var(--radius);
+    background: var(--gray-100);
+    padding: 8px 12px; margin-top: 6px;
+  }
+  .answer-area textarea { min-height: 54px; }
+
+  /* Two-column proc */
+  .proc-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .proc-2col-item { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 10px 12px; }
+  .proc-2col-item label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: .4px; display: block; margin-bottom: 6px; }
+  .proc-2col-item textarea { min-height: 80px; }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%; border-collapse: collapse;
+    margin-bottom: 14px; font-size: 13px;
+  }
+  .data-table th {
+    background: var(--navy); color: var(--white);
+    padding: 7px 14px; text-align: center; font-weight: 600;
+  }
+  .data-table td {
+    padding: 7px 14px; text-align: center;
+    border: 1px solid var(--gray-200);
+  }
+  .data-table tr:nth-child(even) td { background: var(--gray-100); }
+
+  /* ── STATS TABLE ── */
+  .stats-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .stats-table th { background: var(--navy); color: white; padding: 7px 12px; text-align: left; font-size: 12px; }
+  .stats-table td { border: 1px solid var(--gray-200); padding: 6px 10px; }
+  .stats-table td:first-child { font-weight: 700; background: var(--gray-100); }
+  .stats-table textarea { min-height: 40px; }
+
+  /* ── PIE CHART VISUAL ── */
+  .pie-row { display: flex; align-items: center; gap: 20px; margin-bottom: 12px; flex-wrap: wrap; }
+  .pie-svg { flex-shrink: 0; }
+  .legend { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ── LINE CHART CANVAS ── */
+  .chart-area {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 12px;
+    margin-top: 8px;
+  }
+  canvas { display: block; }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  .compare-table th { background: var(--navy); color: white; padding: 8px 10px; }
+  .compare-table td { border: 1px solid var(--gray-200); padding: 6px 10px; text-align: center; }
+  .compare-table td:first-child { background: var(--gray-100); font-weight: 700; text-align: left; }
+  .compare-table input[type="text"] {
+    width: 100%; border: none; background: transparent;
+    font-family: 'Source Sans 3', sans-serif; font-size: 12.5px;
+    text-align: center; outline: none; color: var(--navy);
+  }
+  .verde { color: #2e8a5e; font-weight: 700; }
+  .naranja { color: #c45e00; font-weight: 700; }
+
+  /* ── BONUS ── */
+  .bonus-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a6e 100%);
+    color: white; border-radius: var(--radius); padding: 16px 20px; margin-top: 6px;
+  }
+  .bonus-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 6px;
+  }
+  .bonus-section textarea {
+    color: white; min-height: 70px;
+  }
+  .bonus-section textarea::placeholder { color: rgba(255,255,255,.4); }
+
+  /* ── ERROR DETECTION TABLE ── */
+  .error-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .error-table th { background: var(--navy); color: white; padding: 7px 10px; text-align: center; }
+  .error-table td { border: 1px solid var(--gray-200); padding: 6px 8px; text-align: center; vertical-align: middle; }
+  .error-table td:first-child { background: var(--gray-100); font-weight: 700; text-align: left; }
+  .error-table select {
+    border: 1px solid var(--gray-200); border-radius: 4px;
+    padding: 4px 8px; font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px; background: var(--white); color: var(--navy); cursor: pointer;
+  }
+  .error-table input[type="text"] {
+    width: 100%; border: 1px solid var(--gray-200); border-radius: 4px;
+    padding: 5px 8px; font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px; background: var(--white); color: var(--navy); outline: none;
+  }
+  .error-table input[type="text"]:focus { border-color: var(--gold); }
+
+  /* ── RANGO FIELD ── */
+  .rango-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; margin-top: 10px; flex-wrap: wrap;
+  }
+  .rango-row input[type="text"] {
+    width: 60px; border: none; border-bottom: 1.5px solid var(--gray-400);
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; outline: none; padding: 2px 4px;
+    background: transparent;
+  }
+  .rango-row input:focus { border-color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--gray-200); margin: 14px 0; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; font-size: 12px; }
+    .toolbar { display: none; }
+    .page { padding: 10px; max-width: 100%; }
+    .section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    .option { border: 1px solid #ccc; }
+    textarea { resize: none; }
+    canvas { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <button class="btn btn-secondary" onclick="clearAll()">🗑 Limpiar todo</button>
+    <button class="btn btn-primary" onclick="window.print()">🖨 Imprimir / Guardar PDF</button>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="logo-circle">LP</div>
+      <div class="header-text">
+        <h1>Instituto Luis Pasteur – Unidad Andalucía</h1>
+        <p>Ciclo Escolar 2025–2026 &nbsp;|&nbsp; Secundaria &nbsp;|&nbsp; 3° de Secundaria</p>
+      </div>
+      <div class="subject-badge">Matemáticas III</div>
+    </div>
+  </div>
+
+  <!-- IDENTITY FIELDS -->
+  <div class="identity">
+    <div>
+      <label>Nombre</label>
+      <input type="text" id="nombre" placeholder="Escribe tu nombre completo">
+    </div>
+    <div class="sep"></div>
+    <div>
+      <label>N° Lista</label>
+      <input type="text" id="nlista" placeholder="#" style="max-width:60px">
+    </div>
+    <div class="sep"></div>
+    <div>
+      <label>Fecha</label>
+      <input type="text" id="fecha" placeholder="dd/mm/aaaa">
+    </div>
+    <div class="sep"></div>
+    <div>
+      <label>Grupo</label>
+      <input type="text" id="grupo" placeholder="Ej. A">
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN I -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">I</div>
+      <h2>Volumen de Sólidos Geométricos</h2>
+      <span class="pda-tag">3 aciertos</span>
+    </div>
+    <div class="section-body">
+      <div class="instrucciones">
+        📋 <strong>Instrucciones:</strong> Lee la situación, subraya la respuesta correcta y muestra el procedimiento.<br>
+        La escuela quiere construir dos bebederos. <strong>Modelo 1:</strong> tanque cilíndrico diámetro 0.8 m, altura 1.5 m. <strong>Modelo 2:</strong> prisma rectangular 0.9 × 0.9 × 1.2 m. (Usa π = 3.14)
+      </div>
+
+      <!-- P1 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">1</span> ¿Cuál es el volumen del tanque cilíndrico (Modelo 1)?</div>
+        <div class="options" id="q1">
+          <label class="option"><input type="radio" name="q1" value="A"> <strong>A.</strong>&nbsp; 0.75 m³</label>
+          <label class="option"><input type="radio" name="q1" value="C"> <strong>C.</strong>&nbsp; 0.60 m³</label>
+          <label class="option"><input type="radio" name="q1" value="B"> <strong>B.</strong>&nbsp; 0.94 m³</label>
+          <label class="option"><input type="radio" name="q1" value="D"> <strong>D.</strong>&nbsp; 1.13 m³</label>
+        </div>
+        <div class="proc-box">
+          <div class="proc-header"><span>Datos</span><span>Fórmula</span><span>Sustitución y Resultado</span></div>
+          <div class="proc-body">
+            <div class="proc-cell"><textarea placeholder="d = 0.8 m&#10;r = ?&#10;h = 1.5 m"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="V = π × r² × h"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="Escribe la sustitución y el resultado..."></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">2</span> ¿Cuál es el volumen de la caja rectangular (Modelo 2)?</div>
+        <div class="options" id="q2">
+          <label class="option"><input type="radio" name="q2" value="A"> <strong>A.</strong>&nbsp; 0.81 m³</label>
+          <label class="option"><input type="radio" name="q2" value="C"> <strong>C.</strong>&nbsp; 1.00 m³</label>
+          <label class="option"><input type="radio" name="q2" value="B"> <strong>B.</strong>&nbsp; 0.97 m³</label>
+          <label class="option"><input type="radio" name="q2" value="D"> <strong>D.</strong>&nbsp; 1.21 m³</label>
+        </div>
+        <div class="proc-box">
+          <div class="proc-header"><span>Datos</span><span>Fórmula</span><span>Sustitución y Resultado</span></div>
+          <div class="proc-body">
+            <div class="proc-cell"><textarea placeholder="l = 0.9 m&#10;a = 0.9 m&#10;h = 1.2 m"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="V = l × a × h"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="Escribe la sustitución y el resultado..."></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">3</span> ¿Qué modelo le conviene más a la escuela?</div>
+        <div class="options" id="q3">
+          <label class="option"><input type="radio" name="q3" value="A"> <strong>A.</strong>&nbsp; El Modelo 1, porque el cilindro siempre almacena más.</label>
+          <label class="option"><input type="radio" name="q3" value="B"> <strong>B.</strong>&nbsp; El Modelo 2, porque tiene mayor volumen y almacena más agua.</label>
+          <label class="option"><input type="radio" name="q3" value="C"> <strong>C.</strong>&nbsp; El Modelo 1, porque tiene mayor volumen y almacena más agua.</label>
+          <label class="option"><input type="radio" name="q3" value="D"> <strong>D.</strong>&nbsp; Son iguales; ambos almacenan la misma cantidad.</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN II -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">II</div>
+      <h2>Volumen de Figuras Compuestas</h2>
+      <span class="pda-tag">3 aciertos</span>
+    </div>
+    <div class="section-body">
+      <div class="instrucciones">
+        📋 Un almacén: prisma rectangular 6 m × 4 m base, 3 m de paredes. Sobre él, un techo de prisma triangular base 4 m, altura 2 m.
+      </div>
+
+      <!-- P4 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">4</span> ¿Cuánto espacio ocupa la parte rectangular del almacén?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q4" value="A"> <strong>A.</strong>&nbsp; 48 m³</label>
+          <label class="option"><input type="radio" name="q4" value="C"> <strong>C.</strong>&nbsp; 72 m³</label>
+          <label class="option"><input type="radio" name="q4" value="B"> <strong>B.</strong>&nbsp; 36 m³</label>
+          <label class="option"><input type="radio" name="q4" value="D"> <strong>D.</strong>&nbsp; 60 m³</label>
+        </div>
+        <div class="proc-box">
+          <div class="proc-header"><span>Datos</span><span>Fórmula</span><span>Sustitución y Resultado</span></div>
+          <div class="proc-body">
+            <div class="proc-cell"><textarea placeholder="l = 6 m&#10;a = 4 m&#10;h = 3 m"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="V = l × a × h"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="Escribe la sustitución y el resultado..."></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P5 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">5</span> ¿Cuál es el volumen del techo (prisma triangular)?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q5" value="A"> <strong>A.</strong>&nbsp; 24 m³</label>
+          <label class="option"><input type="radio" name="q5" value="C"> <strong>C.</strong>&nbsp; 12 m³</label>
+          <label class="option"><input type="radio" name="q5" value="B"> <strong>B.</strong>&nbsp; 16 m³</label>
+          <label class="option"><input type="radio" name="q5" value="D"> <strong>D.</strong>&nbsp; 20 m³</label>
+        </div>
+        <div class="proc-box">
+          <div class="proc-header"><span>Datos</span><span>Fórmula</span><span>Sustitución y Resultado</span></div>
+          <div class="proc-body">
+            <div class="proc-cell"><textarea placeholder="base = 4 m&#10;h△ = 2 m&#10;largo = 6 m"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="V = (½ × b × h) × largo"></textarea></div>
+            <div class="proc-cell"><textarea placeholder="Escribe la sustitución y el resultado..."></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P6 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">6</span> Rodrigo dice que el volumen total es solo el del techo. ¿Estás de acuerdo?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q6" value="A"> <strong>A.</strong>&nbsp; Sí, porque el volumen útil es solo el del techo.</label>
+          <label class="option"><input type="radio" name="q6" value="B"> <strong>B.</strong>&nbsp; No, el volumen total es la suma de ambas partes.</label>
+          <label class="option"><input type="radio" name="q6" value="C"> <strong>C.</strong>&nbsp; Sí, porque los prismas rectangulares no encierran espacio real.</label>
+          <label class="option"><input type="radio" name="q6" value="D"> <strong>D.</strong>&nbsp; No, solo se suman si las dos figuras son iguales.</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN III -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">III</div>
+      <h2>Comparación de Empaques</h2>
+      <span class="pda-tag">1.5 aciertos</span>
+    </div>
+    <div class="section-body">
+      <div class="instrucciones">
+        📋 Opción 1: caja prismática 10 cm × 7 cm × 4 cm. &nbsp;|&nbsp; Opción 2: pirámide cuadrangular base 10 × 10 cm, altura 9 cm.
+      </div>
+
+      <!-- P7 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">7</span> Calcula el volumen de ambas opciones.</div>
+        <div class="proc-2col">
+          <div class="proc-2col-item">
+            <label>Opción 1 – Prisma rectangular</label>
+            <textarea placeholder="V = l × a × h&#10;V = 10 × 7 × 4&#10;V = ..."></textarea>
+          </div>
+          <div class="proc-2col-item">
+            <label>Opción 2 – Pirámide cuadrangular</label>
+            <textarea placeholder="V = (1/3) × B × h&#10;B = 10 × 10&#10;V = ..."></textarea>
+          </div>
+        </div>
+        <div class="answer-area" style="margin-top:10px;">
+          <strong>La opción con mayor volumen es:</strong>
+          <textarea placeholder="Escribe tu conclusión..."></textarea>
+        </div>
+      </div>
+
+      <!-- P8 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">8</span> ¿Cambiaría tu recomendación si la panadería prioriza el atractivo visual?</div>
+        <div class="answer-area">
+          <textarea placeholder="Argumenta tu respuesta considerando el volumen y la forma del empaque..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN IV -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">IV</div>
+      <h2>Interpretación de Tablas y Gráficas</h2>
+      <span class="pda-tag">4 aciertos</span>
+    </div>
+    <div class="section-body">
+      <div class="instrucciones">
+        📋 La tabla muestra los puntos del equipo de basquetbol de 3°B en el torneo.
+      </div>
+
+      <table class="data-table">
+        <tr>
+          <th>Partido</th><th>1°</th><th>2°</th><th>3°</th><th>4°</th><th>5°</th>
+        </tr>
+        <tr>
+          <td><strong>Puntos</strong></td><td>38</td><td>52</td><td>47</td><td>65</td><td>44</td>
+        </tr>
+      </table>
+
+      <div class="question">
+        <div class="question-label"><span class="q-num">9</span> ¿En qué partido anotaron más puntos?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q9" value="A"> <strong>A.</strong>&nbsp; Primer partido</label>
+          <label class="option"><input type="radio" name="q9" value="C"> <strong>C.</strong>&nbsp; Tercer partido</label>
+          <label class="option"><input type="radio" name="q9" value="B"> <strong>B.</strong>&nbsp; Cuarto partido</label>
+          <label class="option"><input type="radio" name="q9" value="D"> <strong>D.</strong>&nbsp; Quinto partido</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-label"><span class="q-num">10</span> ¿Cuántos puntos más se anotaron en el 4° partido comparado con el 1°?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q10" value="A"> <strong>A.</strong>&nbsp; 22 puntos</label>
+          <label class="option"><input type="radio" name="q10" value="C"> <strong>C.</strong>&nbsp; 27 puntos</label>
+          <label class="option"><input type="radio" name="q10" value="B"> <strong>B.</strong>&nbsp; 18 puntos</label>
+          <label class="option"><input type="radio" name="q10" value="D"> <strong>D.</strong>&nbsp; 15 puntos</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-label"><span class="q-num">11</span> Si la tendencia del 2° al 3° se repitiera del 4° al 5°, ¿cuántos puntos en un 6° partido imaginario?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q11" value="A"> <strong>A.</strong>&nbsp; 60 puntos</label>
+          <label class="option"><input type="radio" name="q11" value="C"> <strong>C.</strong>&nbsp; 53 puntos</label>
+          <label class="option"><input type="radio" name="q11" value="B"> <strong>B.</strong>&nbsp; 70 puntos</label>
+          <label class="option"><input type="radio" name="q11" value="D"> <strong>D.</strong>&nbsp; 58 puntos</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-label"><span class="q-num">12</span> ¿Cuál es el total de puntos en los 5 partidos?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q12" value="A"> <strong>A.</strong>&nbsp; 240</label>
+          <label class="option"><input type="radio" name="q12" value="C"> <strong>C.</strong>&nbsp; 246</label>
+          <label class="option"><input type="radio" name="q12" value="B"> <strong>B.</strong>&nbsp; 256</label>
+          <label class="option"><input type="radio" name="q12" value="D"> <strong>D.</strong>&nbsp; 236</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN V -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">V</div>
+      <h2>Gráfica Circular y Diagrama de Línea</h2>
+      <span class="pda-tag">2 aciertos</span>
+    </div>
+    <div class="section-body">
+
+      <!-- P13 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">13</span> Gráfica circular: preferencias deportivas. Si hay 120 alumnos, ¿cuántos prefieren fútbol o voleibol?</div>
+        <div class="pie-row">
+          <svg class="pie-svg" width="130" height="130" viewBox="0 0 130 130">
+            <!-- Fútbol 35% -->
+            <path d="M65,65 L65,5 A60,60 0 0,1 118.08,32.5 Z" fill="#0f2240"/>
+            <!-- Basquetbol 30% -->
+            <path d="M65,65 L118.08,32.5 A60,60 0 0,1 118.08,97.5 Z" fill="#c9991a"/>
+            <!-- Voleibol 20% -->
+            <path d="M65,65 L118.08,97.5 A60,60 0 0,1 39.5,122.5 Z" fill="#1a6b9e"/>
+            <!-- Natación 15% -->
+            <path d="M65,65 L39.5,122.5 A60,60 0 0,1 65,5 Z" fill="#2e8a5e"/>
+            <circle cx="65" cy="65" r="20" fill="white"/>
+          </svg>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#0f2240"></div> Fútbol 35%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#c9991a"></div> Basquetbol 30%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#1a6b9e"></div> Voleibol 20%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#2e8a5e"></div> Natación 15%</div>
+          </div>
+        </div>
+        <div class="proc-box">
+          <div class="proc-header"><span>Fútbol (35%)</span><span>Voleibol (20%)</span><span>Total fútbol + voleibol</span></div>
+          <div class="proc-body">
+            <div class="proc-cell"><textarea placeholder="0.35 × 120 = ..."></textarea></div>
+            <div class="proc-cell"><textarea placeholder="0.20 × 120 = ..."></textarea></div>
+            <div class="proc-cell"><textarea placeholder="... + ... = ..."></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P14 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">14</span> Temperaturas máximas semanales. Traza el diagrama de línea y describe.</div>
+        <div class="instrucciones" style="margin-bottom:10px;">
+          Datos: Lun 28°C · Mar 31°C · Mié 33°C · Jue 29°C · Vie 35°C · Sáb 32°C · Dom 27°C
+        </div>
+        <div class="chart-area">
+          <canvas id="lineChart" width="760" height="220"></canvas>
+        </div>
+        <div class="answer-area" style="margin-top:10px;">
+          <strong>B. Descripción de la tendencia (2 oraciones):</strong>
+          <textarea placeholder="Describe qué le sucedió a las temperaturas durante la semana, identificando el día más frío y el más cálido..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN VI -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">VI</div>
+      <h2>Medidas de Tendencia Central y Dispersión</h2>
+      <span class="pda-tag">2 aciertos</span>
+    </div>
+    <div class="section-body">
+      <div class="instrucciones">
+        📋 Conjunto B: {5, 9, 7, 8, 6, 10, 8, 7}
+      </div>
+
+      <!-- P15 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">15</span> Calcula: media, mediana y moda del conjunto B.</div>
+        <table class="stats-table">
+          <tr><th>Medida</th><th>Procedimiento</th><th>Resultado</th></tr>
+          <tr>
+            <td>Media</td>
+            <td><textarea placeholder="Suma todos los valores y divide entre la cantidad de datos..."></textarea></td>
+            <td><input type="text" placeholder="X̄ = " style="border:none;border-bottom:1.5px solid var(--gray-200);width:100%;padding:4px;font-family:inherit;font-size:13px;outline:none;"></td>
+          </tr>
+          <tr>
+            <td>Mediana</td>
+            <td><textarea placeholder="Ordena los datos y encuentra el valor central..."></textarea></td>
+            <td><input type="text" placeholder="Me = " style="border:none;border-bottom:1.5px solid var(--gray-200);width:100%;padding:4px;font-family:inherit;font-size:13px;outline:none;"></td>
+          </tr>
+          <tr>
+            <td>Moda</td>
+            <td><textarea placeholder="Encuentra el valor que más se repite..."></textarea></td>
+            <td><input type="text" placeholder="Mo = " style="border:none;border-bottom:1.5px solid var(--gray-200);width:100%;padding:4px;font-family:inherit;font-size:13px;outline:none;"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- P16 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">16</span> Rango y desviación media del conjunto B.</div>
+        <div class="rango-row">
+          <strong>Rango:</strong> valor máximo − valor mínimo =
+          <input type="text" placeholder="__">
+          −
+          <input type="text" placeholder="__">
+          =
+          <input type="text" placeholder="__">
+        </div>
+        <div class="answer-area" style="margin-top:10px;">
+          <strong>Desviación media:</strong>
+          <textarea placeholder="1. Calcula la media (X̄)&#10;2. Halla |xi − X̄| para cada dato&#10;3. Suma las diferencias y divide entre n&#10;DM = ..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN VII -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">VII</div>
+      <h2>Detecta y Corrige Errores</h2>
+      <span class="pda-tag">1.5 aciertos</span>
+    </div>
+    <div class="section-body">
+      <div class="instrucciones">
+        📋 Calificaciones: {3, 7, 9, 7, 10, 8, 6} — Analiza si las medidas son correctas y corrígelas si hay error.
+      </div>
+      <table class="error-table">
+        <tr>
+          <th>Medida</th>
+          <th>Resultado del alumno</th>
+          <th>¿Correcto?</th>
+          <th>Corrección</th>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>7.14</td>
+          <td>
+            <select>
+              <option value="">-- Elige --</option>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td><input type="text" placeholder="Escribe la corrección si hay error"></td>
+        </tr>
+        <tr>
+          <td>Mediana</td>
+          <td>7</td>
+          <td>
+            <select>
+              <option value="">-- Elige --</option>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td><input type="text" placeholder="Escribe la corrección si hay error"></td>
+        </tr>
+        <tr>
+          <td>Moda</td>
+          <td>7</td>
+          <td>
+            <select>
+              <option value="">-- Elige --</option>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td><input type="text" placeholder="Escribe la corrección si hay error"></td>
+        </tr>
+        <tr>
+          <td>Rango</td>
+          <td>8</td>
+          <td>
+            <select>
+              <option value="">-- Elige --</option>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td><input type="text" placeholder="Escribe la corrección si hay error"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN VIII -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">VIII</div>
+      <h2>Comparación de Dos Grupos</h2>
+      <span class="pda-tag">4 aciertos</span>
+    </div>
+    <div class="section-body">
+      <table class="data-table" style="margin-bottom:16px;">
+        <tr>
+          <th>Grupo</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th><th>P8</th>
+        </tr>
+        <tr>
+          <td><span class="verde">Verde</span></td><td>6</td><td>8</td><td>7</td><td>9</td><td>6</td><td>10</td><td>7</td><td>8</td>
+        </tr>
+        <tr>
+          <td><span class="naranja">Naranja</span></td><td>9</td><td>7</td><td>9</td><td>8</td><td>9</td><td>10</td><td>8</td><td>8</td>
+        </tr>
+      </table>
+
+      <!-- P17 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">17</span> Calcula la media de cada grupo. ¿Cuál obtuvo mejor promedio?</div>
+        <div class="proc-2col">
+          <div class="proc-2col-item">
+            <label>Grupo Verde</label>
+            <textarea placeholder="Suma: 6+8+7+9+6+10+7+8 = ...&#10;Media = ... ÷ 8 = ..."></textarea>
+          </div>
+          <div class="proc-2col-item">
+            <label>Grupo Naranja</label>
+            <textarea placeholder="Suma: 9+7+9+8+9+10+8+8 = ...&#10;Media = ... ÷ 8 = ..."></textarea>
+          </div>
+        </div>
+        <div class="answer-area" style="margin-top:8px;">
+          <textarea placeholder="Conclusión: El grupo con mejor promedio es..."></textarea>
+        </div>
+      </div>
+
+      <!-- P18 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">18</span> Calcula la mediana y la moda de cada grupo.</div>
+        <table class="compare-table">
+          <tr><th>Medida</th><th class="verde">Grupo Verde</th><th class="naranja">Grupo Naranja</th></tr>
+          <tr>
+            <td>Mediana</td>
+            <td><input type="text" placeholder="Procedimiento y resultado..."></td>
+            <td><input type="text" placeholder="Procedimiento y resultado..."></td>
+          </tr>
+          <tr>
+            <td>Moda</td>
+            <td><input type="text" placeholder="Valor(es) que más se repiten..."></td>
+            <td><input type="text" placeholder="Valor(es) que más se repiten..."></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- P19 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">19</span> Calcula el rango de ambos grupos. ¿Qué indica sobre la consistencia?</div>
+        <div class="proc-2col">
+          <div class="proc-2col-item">
+            <label>Grupo Verde</label>
+            <textarea placeholder="Rango = máx − mín = ..."></textarea>
+          </div>
+          <div class="proc-2col-item">
+            <label>Grupo Naranja</label>
+            <textarea placeholder="Rango = máx − mín = ..."></textarea>
+          </div>
+        </div>
+        <div class="answer-area" style="margin-top:8px;">
+          <textarea placeholder="¿Qué indica el rango sobre la consistencia de cada grupo?"></textarea>
+        </div>
+      </div>
+
+      <!-- P20 -->
+      <div class="question">
+        <div class="question-label"><span class="q-num">20</span> Calcula la desviación media de cada grupo. ¿Cuál fue más consistente?</div>
+        <div class="proc-2col">
+          <div class="proc-2col-item">
+            <label>Grupo Verde – Desviación Media</label>
+            <textarea placeholder="|xi − X̄| para cada dato:&#10;Suma |...| = ...&#10;DM = ... ÷ 8 = ..."></textarea>
+          </div>
+          <div class="proc-2col-item">
+            <label>Grupo Naranja – Desviación Media</label>
+            <textarea placeholder="|xi − X̄| para cada dato:&#10;Suma |...| = ...&#10;DM = ... ÷ 8 = ..."></textarea>
+          </div>
+        </div>
+        <div class="answer-area" style="margin-top:8px;">
+          <textarea placeholder="El grupo más consistente fue... porque su desviación media es menor, lo que indica..."></textarea>
+        </div>
+      </div>
+
+      <!-- BONUS -->
+      <div class="bonus-section">
+        <div class="bonus-label">⭐ Bonus — 1 acierto</div>
+        <p style="font-size:13px; margin-bottom:8px; opacity:.9;">Si en un conjunto de datos la media es mucho menor que la mediana, ¿qué nos dice esto sobre la distribución de los datos? Explica con un ejemplo concreto.</p>
+        <textarea style="width:100%;min-height:80px;border:none;border-bottom:1px solid rgba(255,255,255,.3);background:transparent;font-family:'Source Sans 3',sans-serif;font-size:13px;color:white;resize:vertical;outline:none;line-height:1.5;" placeholder="Escribe tu razonamiento y ejemplo..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// ── RADIO OPTION HIGHLIGHT ──
+document.querySelectorAll('.option input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', function(){
+    const name = this.name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.closest('.option').classList.remove('selected');
+    });
+    this.closest('.option').classList.add('selected');
+  });
+});
+
+// ── LINE CHART ──
+(function drawLineChart(){
+  const canvas = document.getElementById('lineChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const days = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+  const temps = [28,31,33,29,35,32,27];
+  const pad = {top:20, right:30, bottom:40, left:50};
+  const minT = 20, maxT = 40;
+
+  ctx.clearRect(0,0,W,H);
+
+  // background
+  ctx.fillStyle = '#f4f4f4'; ctx.fillRect(0,0,W,H);
+
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+
+  // Grid lines
+  ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
+  for(let i=0; i<=4; i++){
+    const y = pad.top + (chartH / 4) * i;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+chartW, y); ctx.stroke();
+    ctx.fillStyle = '#888'; ctx.font = '11px JetBrains Mono, monospace'; ctx.textAlign = 'right';
+    ctx.fillText((maxT - ((maxT-minT)/4)*i)+'°', pad.left-6, y+4);
+  }
+
+  // X labels
+  ctx.fillStyle = '#444'; ctx.font = '12px Source Sans 3, sans-serif'; ctx.textAlign = 'center';
+  days.forEach((d,i) => {
+    const x = pad.left + (chartW/(days.length-1))*i;
+    ctx.fillText(d, x, H-pad.bottom+16);
+    // vertical tick
+    ctx.strokeStyle='#ddd'; ctx.beginPath(); ctx.moveTo(x,pad.top); ctx.lineTo(x,pad.top+chartH); ctx.stroke();
+  });
+
+  // Data points & line
+  const pts = temps.map((t,i) => ({
+    x: pad.left + (chartW/(days.length-1))*i,
+    y: pad.top + chartH - ((t-minT)/(maxT-minT))*chartH
+  }));
+
+  // Fill area
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pad.top+chartH);
+  pts.forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(pts[pts.length-1].x, pad.top+chartH);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(26,107,158,0.12)'; ctx.fill();
+
+  // Line
+  ctx.beginPath(); ctx.strokeStyle='#1a6b9e'; ctx.lineWidth=2.5; ctx.lineJoin='round';
+  pts.forEach((p,i) => i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y));
+  ctx.stroke();
+
+  // Points
+  pts.forEach((p,i) => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 5, 0, Math.PI*2);
+    ctx.fillStyle = temps[i]===Math.max(...temps) ? '#c9991a' : temps[i]===Math.min(...temps) ? '#2e8a5e' : '#1a6b9e';
+    ctx.fill();
+    ctx.strokeStyle='white'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.fillStyle='#333'; ctx.font='bold 11px Source Sans 3, sans-serif'; ctx.textAlign='center';
+    ctx.fillText(temps[i]+'°', p.x, p.y-10);
+  });
+})();
+
+// ── CLEAR ALL ──
+function clearAll(){
+  if(!confirm('¿Seguro que deseas borrar todas las respuestas?')) return;
+  document.querySelectorAll('textarea').forEach(t => t.value='');
+  document.querySelectorAll('input[type="text"]').forEach(i => i.value='');
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked=false);
+  document.querySelectorAll('select').forEach(s => s.selectedIndex=0);
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+}
+</script>
+</body>
+</html>
